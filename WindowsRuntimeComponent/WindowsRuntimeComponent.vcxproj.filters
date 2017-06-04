@@ -15,6 +15,7 @@
       <Filter>ATG Tool Kit</Filter>
     </ClCompile>
     <ClCompile Include="AudioWrapper.cpp" />
+    <ClCompile Include="ISACRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -28,5 +29,6 @@
       <Filter>ATG Tool Kit</Filter>
     </ClInclude>
     <ClInclude Include="AudioWrapper.h" />
+    <ClInclude Include="ISACRenderer.h" />
   </ItemGroup>
 </Project>
