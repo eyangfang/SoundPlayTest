@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="SoundPlayTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SoundPlayTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="btnclock" Command="{Binding clcockwiseCommand}" Content="Clockwise" HorizontalAlignment="Left" Margin="294,425,0,0" VerticalAlignment="Top" Height="78" Width="170" Click="btnclock_Click"/>
+        <Button x:Name="btnele" Content="Elevation" HorizontalAlignment="Left" Margin="906,425,0,0" VerticalAlignment="Top" Height="78" Width="170" RenderTransformOrigin="0.106,1.451" Click="btnele_Click"/>
+        <Slider x:Name="cslider" Maximum ="100" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="294,607,0,0" VerticalAlignment="Top" Width="170" Height="40"/>
+        <Slider x:Name="eslider" Maximum ="100" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="906,607,0,0" VerticalAlignment="Top" Width="170" Height="40"/>
+
+    </Grid>
+</Page>
