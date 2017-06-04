@@ -32,8 +32,8 @@ namespace SoundPlayTest
         {
             if (btnclock.Content.ToString() == "Clockwise")
             {
-                AudioWrapper T = new AudioWrapper();
-                bool a = T.Initialize();
+                AudioWrapper aw = new AudioWrapper();
+                aw.Initialize();
                 btnclock.Content = "Stop";
                 btnele.IsEnabled = false;
                 eslider.IsEnabled = false;

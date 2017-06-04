@@ -6,18 +6,10 @@ using namespace DirectX;
 using namespace WindowsRuntimeComponent;
 using namespace Platform;
 
-namespace
-{
-	const wchar_t* c_WaveFile = L"./assets/ATG_SpatialMotion_monoFunkDrums1Loop.wav";
-	const float c_RotateScale = 0.1f;
-	const float c_MaxHeight = 100;
-	const float c_MoveScale = 3.0f;
-}
-
 VOID CALLBACK SpatialWorkCallback(_Inout_ PTP_CALLBACK_INSTANCE Instance, _Inout_opt_ PVOID Context, _Inout_ PTP_WORK Work)
 {
 	HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
-	AudioWrapper ^ Sink = (AudioWrapper ^)Context;
+	AudioOperations* Sink = (AudioOperations *)Context;
 	Work;
 	Instance;
 
@@ -115,93 +107,23 @@ AudioWrapper::AudioWrapper()
 {
 }
 
-bool AudioWrapper::Initialize()
+void AudioWrapper::Initialize()
 {
-	//std::unique_ptr<uint8_t[]>              m_waveFile;
-	//DX::WAVData  WavData;
-	//if (DX::LoadWAVAudioFromFileEx(c_WaveFile, m_waveFile, WavData))
-	//{
-	//	return false;
-	//}
-
-	m_renderer = Microsoft::WRL::Make<ISACRenderer>();
-
-	// Selects the Default Audio Device
-	m_renderer->InitializeAudioDeviceAsync();
-
-	// Load the emitter file
-	m_fileLoaded = LoadFile(c_WaveFile);
-
-	if (m_fileLoaded && m_renderer)
+	ops.Initialize();
+	if (ops.m_fileLoaded && ops.m_renderer)
 	{
-		while (!m_renderer->IsActive())
+		while (!ops.m_renderer->IsActive())
 		{
 			//Wait for renderer, then start
 			Sleep(5);
 		}
-		m_threadActive = true;
-		m_workThread = CreateThreadpoolWork(SpatialWorkCallback, this, nullptr);
-		SubmitThreadpoolWork(m_workThread);
+		ops.m_threadActive = true;
+		ops.m_workThread = CreateThreadpoolWork(SpatialWorkCallback, &ops, nullptr);
+		SubmitThreadpoolWork(ops.m_workThread);
 	}
-	return true;
 }
 
 bool AudioWrapper::Stop()
 {
-	return true;
-}
-
-bool AudioWrapper::LoadFile(LPCWSTR inFile)
-{
-	std::unique_ptr<uint8_t[]>              m_waveFile;
-	DX::WAVData  WavData;
-
-	if (m_emitter.buffersize)
-	{
-		delete[] m_emitter.wavBuffer;
-	}
-	m_emitter.buffersize = 0;
-	m_emitter.curBufferLoc = 0;
-
-	if (DX::LoadWAVAudioFromFileEx(inFile, m_waveFile, WavData))
-	{
-		return false;
-	}
-
-	if ((WavData.wfx->wFormatTag == 1) && WavData.wfx->nSamplesPerSec == 48000 && WavData.wfx->nChannels == 1)
-	{
-		int numSamples = WavData.audioBytes / 2;
-		m_emitter.wavBuffer = new char[numSamples * 4];
-		m_emitter.buffersize = numSamples * 4;
-
-		float * tempnew;
-		short * tempdata = (short *)WavData.startAudio;
-
-		for (int i = 0; i < numSamples; i++)
-		{
-			tempnew = (float *)m_emitter.wavBuffer;
-			tempnew[i] = (float)tempdata[i] / 32768;
-		}
-	}
-	else if ((WavData.wfx->wFormatTag == 3) && WavData.wfx->nSamplesPerSec == 48000 && WavData.wfx->nChannels == 1)
-	{
-		int numSamples = WavData.audioBytes / 4;
-		m_emitter.wavBuffer = new char[numSamples * 4];
-		m_emitter.buffersize = numSamples * 4;
-
-		float * tempnew;
-		float * tempdata = (float *)WavData.startAudio;
-
-		for (int i = 0; i < numSamples; i++)
-		{
-			tempnew = (float *)m_emitter.wavBuffer;
-			tempnew[i] = (float)tempdata[i];
-		}
-	}
-	else
-	{
-		return false;
-	}
-
 	return true;
 }

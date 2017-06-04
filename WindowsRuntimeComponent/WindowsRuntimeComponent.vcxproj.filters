@@ -16,6 +16,7 @@
     </ClCompile>
     <ClCompile Include="AudioWrapper.cpp" />
     <ClCompile Include="ISACRenderer.cpp" />
+    <ClCompile Include="AudioOperations.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -30,5 +31,6 @@
     </ClInclude>
     <ClInclude Include="AudioWrapper.h" />
     <ClInclude Include="ISACRenderer.h" />
+    <ClInclude Include="AudioOperations.h" />
   </ItemGroup>
 </Project>
