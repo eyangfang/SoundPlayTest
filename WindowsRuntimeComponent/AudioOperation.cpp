@@ -1,5 +1,5 @@
 ﻿#include "pch.h"
-#include "AudioOperations.h"
+#include "AudioOperation.h"
 #include "WAVFileReader.h"
 
 using namespace DirectX;
@@ -14,13 +14,13 @@ namespace
 	const float c_MoveScale = 3.0f;
 }
 
-AudioOperations::AudioOperations() :
-	m_fileLoaded(false),
-	m_threadActive(false)
+AudioOperation::AudioOperation()
 {
+	m_fileLoaded = false;
+	m_threadActive = false;
 }
 
-void AudioOperations::Initialize()
+void AudioOperation::Initialize()
 {
 	m_renderer = Microsoft::WRL::Make<ISACRenderer>();
 
@@ -31,12 +31,12 @@ void AudioOperations::Initialize()
 	m_fileLoaded = LoadFile(c_WaveFile);
 }
 
-bool AudioOperations::Stop()
+bool AudioOperation::Stop()
 {
 	return true;
 }
 
-bool AudioOperations::LoadFile(LPCWSTR inFile)
+bool AudioOperation::LoadFile(LPCWSTR inFile)
 {
 	std::unique_ptr<uint8_t[]>              m_waveFile;
 	DX::WAVData  WavData;

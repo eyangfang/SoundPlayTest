@@ -9,7 +9,7 @@ using namespace Platform;
 VOID CALLBACK SpatialWorkCallback(_Inout_ PTP_CALLBACK_INSTANCE Instance, _Inout_opt_ PVOID Context, _Inout_ PTP_WORK Work)
 {
 	HRESULT hr = CoInitializeEx(NULL, COINIT_MULTITHREADED);
-	AudioOperations* Sink = (AudioOperations *)Context;
+	AudioOperation* Sink = (AudioOperation *)Context;
 	Work;
 	Instance;
 
@@ -112,11 +112,11 @@ void AudioWrapper::Initialize()
 	ops.Initialize();
 	if (ops.m_fileLoaded && ops.m_renderer)
 	{
-		while (!ops.m_renderer->IsActive())
-		{
-			//Wait for renderer, then start
-			Sleep(5);
-		}
+		//while (!ops.m_renderer->IsActive())
+		//{
+		//	//Wait for renderer, then start
+		//	Sleep(5);
+		//}
 		ops.m_threadActive = true;
 		ops.m_workThread = CreateThreadpoolWork(SpatialWorkCallback, &ops, nullptr);
 		SubmitThreadpoolWork(ops.m_workThread);

@@ -4,10 +4,10 @@
 
 namespace WindowsRuntimeComponent 
 {
-    class AudioOperations
+    class AudioOperation
     {
     public:
-		AudioOperations();
+		AudioOperation();
 		void Initialize();
 		bool Stop();
 		bool LoadFile(LPCWSTR inFile);

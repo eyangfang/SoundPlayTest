@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "ISACRenderer.h"
-#include "AudioOperations.h"
+#include "AudioOperation.h"
 #include "WAVFileReader.h"
 
 namespace WindowsRuntimeComponent 
@@ -12,6 +12,6 @@ namespace WindowsRuntimeComponent
 		void Initialize();
 		bool Stop();
 	private:
-		AudioOperations ops;
+		AudioOperation ops;
     };
 }
