@@ -23,16 +23,17 @@ namespace SoundPlayTest
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        AudioWrapper aw;
         public MainPage()
         {
             this.InitializeComponent();
+            aw = new AudioWrapper();
         }
 
         private void btnclock_Click(object sender, RoutedEventArgs e)
         {
             if (btnclock.Content.ToString() == "Clockwise")
             {
-                AudioWrapper aw = new AudioWrapper();
                 aw.Initialize();
                 btnclock.Content = "Stop";
                 btnele.IsEnabled = false;
@@ -40,6 +41,7 @@ namespace SoundPlayTest
             }
             else
             {
+                aw.Stop();
                 btnclock.Content = "Clockwise";
                 btnele.IsEnabled = true;
                 eslider.IsEnabled = true;
