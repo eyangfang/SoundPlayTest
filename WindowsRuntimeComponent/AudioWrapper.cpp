@@ -107,9 +107,82 @@ AudioWrapper::AudioWrapper()
 {
 }
 
+void AudioWrapper::UpdatePosition()
+{
+	if (m_bCWise) //front -> right-> back-> left
+	{
+		switch (ort) 
+		{
+			case LEFT:
+				ort = FRONT;
+				ops.m_emitter.posX = 0;
+				ops.m_emitter.posY = -100;
+				ops.m_emitter.posZ = 0;
+				break;
+			case RIGHT:
+				ort = BACK;
+				ops.m_emitter.posX = 0;
+				ops.m_emitter.posY = 100;
+				ops.m_emitter.posZ = 0;
+				break;
+			case FRONT:
+				ort = RIGHT;
+				ops.m_emitter.posX = 100;
+				ops.m_emitter.posY = 0;
+				ops.m_emitter.posZ = 0;
+				break;
+			case BACK:
+				ort = LEFT;
+				ops.m_emitter.posX = -100;
+				ops.m_emitter.posY = 0;
+				ops.m_emitter.posZ = 0;
+				break;
+		}
+	}
+	else         //front->above->back->below
+	{
+		switch (ort)
+		{
+		case BOTTOM:
+			ort = FRONT;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = -100;
+			ops.m_emitter.posZ = 0;
+			break;
+		case TOP:
+			ort = BACK;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = 100;
+			ops.m_emitter.posZ = 0;
+			break;
+		case FRONT:
+			ort = TOP;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = 0;
+			ops.m_emitter.posZ = 100;
+			break;
+		case BACK:
+			ort = BOTTOM;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = 0;
+			ops.m_emitter.posZ = -100;
+			break;
+		}
+	}
+}
+
 void AudioWrapper::Initialize()
 {
 	ops.Initialize();
+	period.Duration = 10 * 10000000;
+	times = 0;
+	ort = FRONT;
+	PeriodicTimer = ThreadPoolTimer::CreatePeriodicTimer(
+		ref new TimerElapsedHandler([this](ThreadPoolTimer^ source)
+	{
+		UpdatePosition();
+	}), period);
+
 	//if (ops.m_fileLoaded && ops.m_renderer)
 	//{
 	//	while (!ops.m_renderer->IsActive())
@@ -135,8 +208,63 @@ bool AudioWrapper::Stop()
 void AudioWrapper::SetDistance(double dist, bool isCWise)
 {
 	if (isCWise)
-		ops.m_emitter.posX = dist;
-	else
-		ops.m_emitter.posZ = dist;
-	ops.m_emitter.posY = dist;
+	{
+		switch (ort)
+		{
+		case LEFT:
+			ort = FRONT;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = -dist;
+			ops.m_emitter.posZ = 0;
+			break;
+		case RIGHT:
+			ort = BACK;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = dist;
+			ops.m_emitter.posZ = 0;
+			break;
+		case FRONT:
+			ort = RIGHT;
+			ops.m_emitter.posX = dist;
+			ops.m_emitter.posY = 0;
+			ops.m_emitter.posZ = 0;
+			break;
+		case BACK:
+			ort = LEFT;
+			ops.m_emitter.posX = -dist;
+			ops.m_emitter.posY = 0;
+			ops.m_emitter.posZ = 0;
+			break;
+		}
+	}
+	else         //front->above->back->below
+	{
+		switch (ort)
+		{
+		case BOTTOM:
+			ort = FRONT;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = -dist;
+			ops.m_emitter.posZ = 0;
+			break;
+		case TOP:
+			ort = BACK;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = dist;
+			ops.m_emitter.posZ = 0;
+			break;
+		case FRONT:
+			ort = TOP;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = 0;
+			ops.m_emitter.posZ = dist;
+			break;
+		case BACK:
+			ort = BOTTOM;
+			ops.m_emitter.posX = 0;
+			ops.m_emitter.posY = 0;
+			ops.m_emitter.posZ = -dist;
+			break;
+		}
+	}
 }

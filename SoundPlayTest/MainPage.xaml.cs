@@ -26,8 +26,8 @@ namespace SoundPlayTest
         AudioWrapper aw;
         public MainPage()
         {
-            this.InitializeComponent();
             aw = new AudioWrapper();
+            this.InitializeComponent();
         }
 
         private void btnclock_Click(object sender, RoutedEventArgs e)
@@ -38,6 +38,7 @@ namespace SoundPlayTest
                 btnclock.Content = "Stop";
                 btnele.IsEnabled = false;
                 eslider.IsEnabled = false;
+                aw.SetbuttonPressed(true);
             }
             else
             {
@@ -56,6 +57,7 @@ namespace SoundPlayTest
                 btnele.Content = "Stop";
                 btnclock.IsEnabled = false;
                 cslider.IsEnabled = false;
+                aw.SetbuttonPressed(false);
             }
             else
             {
@@ -73,7 +75,7 @@ namespace SoundPlayTest
 
         private void eslider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            aw.SetDistance(cslider.Value, false);
+            aw.SetDistance(eslider.Value, false);
         }
     }
 }

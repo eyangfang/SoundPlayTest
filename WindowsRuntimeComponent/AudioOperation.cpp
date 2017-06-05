@@ -125,7 +125,7 @@ void AudioOperation::Initialize()
 	m_listener.angle = 0;// X3DAUDIO_PI;
 
 	m_emitter.posX = 0;
-	m_emitter.posY = 0;
+	m_emitter.posY = -100;
 	m_emitter.posZ = 0;
 	m_emitter.angle = 0;
 
