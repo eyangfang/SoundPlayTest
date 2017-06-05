@@ -112,11 +112,11 @@ void AudioWrapper::Initialize()
 	ops.Initialize();
 	if (ops.m_fileLoaded && ops.m_renderer)
 	{
-		//while (!ops.m_renderer->IsActive())
-		//{
-		//	//Wait for renderer, then start
-		//	Sleep(5);
-		//}
+		while (!ops.m_renderer->IsActive())
+		{
+			//Wait for renderer, then start
+			Sleep(5);
+		}
 		ops.m_threadActive = true;
 		ops.m_workThread = CreateThreadpoolWork(SpatialWorkCallback, &ops, nullptr);
 		SubmitThreadpoolWork(ops.m_workThread);
