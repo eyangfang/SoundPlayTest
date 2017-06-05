@@ -52,12 +52,14 @@ namespace SoundPlayTest
         {
             if (btnele.Content.ToString() == "Elevation")
             {
+                aw.Initialize();
                 btnele.Content = "Stop";
                 btnclock.IsEnabled = false;
                 cslider.IsEnabled = false;
             }
             else
             {
+                aw.Stop();
                 btnele.Content = "Elevation";
                 btnclock.IsEnabled = true;
                 cslider.IsEnabled = true;
@@ -66,8 +68,12 @@ namespace SoundPlayTest
 
         private void cslider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            bool bmax = cslider.Value == cslider.Maximum;
-            aw.SetDistanceC(cslider.Value);
+            aw.SetDistance(cslider.Value,true);
+        }
+
+        private void eslider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            aw.SetDistance(cslider.Value, false);
         }
     }
 }

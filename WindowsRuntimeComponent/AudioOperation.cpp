@@ -129,10 +129,14 @@ void AudioOperation::Initialize()
 	m_emitter.posZ = 0;
 	m_emitter.angle = 0;
 
-	m_renderer = Microsoft::WRL::Make<ISACRenderer>();
+	if (m_renderer == nullptr)
+	{
+		m_renderer = Microsoft::WRL::Make<ISACRenderer>();
 
-	// Selects the Default Audio Device
-	m_renderer->InitializeAudioDeviceAsync();
+		// Selects the Default Audio Device
+		m_renderer->InitializeAudioDeviceAsync();
+	}
+	
 
 	// Load the emitter file
 	m_fileLoaded = LoadFile(c_WaveFile);
