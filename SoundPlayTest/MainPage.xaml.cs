@@ -63,5 +63,11 @@ namespace SoundPlayTest
                 cslider.IsEnabled = true;
             }
         }
+
+        private void cslider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            bool bmax = cslider.Value == cslider.Maximum;
+            aw.SetDistanceC(cslider.Value);
+        }
     }
 }

@@ -83,7 +83,7 @@ VOID CALLBACK SpatialWorkCallback(_Inout_ PTP_CALLBACK_INSTANCE Instance, _Inout
 
 			Sink->m_emitter.object->SetPosition(Sink->m_emitter.posX - Sink->m_listener.posX,
 				Sink->m_emitter.posZ - Sink->m_listener.posZ,
-				Sink->m_listener.posY - Sink->m_emitter.posY);
+				Sink->m_listener.posY - Sink->m_emitter.posY); //+x=right,-x=left; +y=above,-y=below; +z=behind,-z=front;
 			Sink->m_emitter.object->SetVolume(1.f);
 
 			for (UINT32 i = 0; i < bytecount; i++)
@@ -118,6 +118,16 @@ AudioOperation::AudioOperation()
 
 void AudioOperation::Initialize()
 {
+	m_listener.posX = 0;
+	m_listener.posY = 0;
+	m_listener.posZ = 0;
+	m_listener.angle = 0;// X3DAUDIO_PI;
+
+	m_emitter.posX = 0;
+	m_emitter.posY = 0;
+	m_emitter.posZ = 0;
+	m_emitter.angle = 0;
+
 	m_renderer = Microsoft::WRL::Make<ISACRenderer>();
 
 	// Selects the Default Audio Device

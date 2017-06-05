@@ -131,3 +131,9 @@ bool AudioWrapper::Stop()
 	ops.Stop();
 	return true;
 }
+
+void AudioWrapper::SetDistanceC(double dist)
+{
+	ops.m_emitter.posX = dist;
+	ops.m_emitter.posY = dist;
+}

@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Button x:Name="btnclock" Command="{Binding clcockwiseCommand}" Content="Clockwise" HorizontalAlignment="Left" Margin="294,425,0,0" VerticalAlignment="Top" Height="78" Width="170" Click="btnclock_Click"/>
         <Button x:Name="btnele" Content="Elevation" HorizontalAlignment="Left" Margin="906,425,0,0" VerticalAlignment="Top" Height="78" Width="170" RenderTransformOrigin="0.106,1.451" Click="btnele_Click"/>
-        <Slider x:Name="cslider" Maximum ="100" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="294,607,0,0" VerticalAlignment="Top" Width="170" Height="40"/>
+        <Slider x:Name="cslider" Minimum="-100" Maximum ="100" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="294,607,0,0" VerticalAlignment="Top" Width="170" Height="40" ValueChanged="cslider_ValueChanged"/>
         <Slider x:Name="eslider" Maximum ="100" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="906,607,0,0" VerticalAlignment="Top" Width="170" Height="40"/>
 
     </Grid>

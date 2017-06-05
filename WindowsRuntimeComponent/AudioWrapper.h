@@ -11,6 +11,7 @@ namespace WindowsRuntimeComponent
         AudioWrapper();
 		void Initialize();
 		bool Stop();
+		void SetDistanceC(double dist);
 	private:
 		AudioOperation ops;
     };
