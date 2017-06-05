@@ -31,5 +31,6 @@ namespace WindowsRuntimeComponent
 		AudioEmitter                                    m_listener;
 		bool	                                        m_threadActive;
 		bool                                            m_fileLoaded;
+		bool											m_PlayingSound;
     };
 }

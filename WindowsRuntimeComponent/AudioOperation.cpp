@@ -23,7 +23,7 @@ VOID CALLBACK SpatialWorkCallback(_Inout_ PTP_CALLBACK_INSTANCE Instance, _Inout
 
 	while (Sink->m_threadActive)
 	{
-		while (Sink->m_renderer->IsActive())
+		while (Sink->m_PlayingSound && Sink->m_renderer->IsActive())
 		{
 			// Wait for a signal from the audio-engine to start the next processing pass 
 			if (Sink->m_renderer->m_bufferCompletionEvent)
@@ -114,6 +114,7 @@ AudioOperation::AudioOperation()
 {
 	m_fileLoaded = false;
 	m_threadActive = false;
+	m_PlayingSound = false;
 }
 
 void AudioOperation::Initialize()
@@ -144,6 +145,7 @@ void AudioOperation::Initialize()
 			Sleep(5);
 		}
 		m_threadActive = true;
+		m_PlayingSound = true;
 		m_workThread = CreateThreadpoolWork(SpatialWorkCallback, this, nullptr);
 		SubmitThreadpoolWork(m_workThread);
 	}
@@ -152,6 +154,7 @@ void AudioOperation::Initialize()
 bool AudioOperation::Stop()
 {
 	m_threadActive = false;
+	m_PlayingSound = false;
 	WaitForThreadpoolWorkCallbacks(m_workThread, FALSE);
 	CloseThreadpoolWork(m_workThread);
 	return true;

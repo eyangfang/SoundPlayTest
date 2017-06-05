@@ -115,18 +115,23 @@ HRESULT ISACRenderer::ActivateCompleted( IActivateAudioInterfaceAsyncOperation *
 		// Setup Static Bed Object mask
 		//AudioObjectType objectmask = AudioObjectType_None;
 		AudioObjectType objectmask =
-			AudioObjectType_FrontLeft |
-			AudioObjectType_FrontRight |
+		//	AudioObjectType_FrontLeft |
+		//	AudioObjectType_FrontRight |
 			AudioObjectType_FrontCenter |
 			AudioObjectType_LowFrequency |
 			AudioObjectType_SideLeft |
 			AudioObjectType_SideRight |
-			AudioObjectType_BackLeft |
-			AudioObjectType_BackRight |
+	//		AudioObjectType_BackLeft |
+		//	AudioObjectType_BackRight |
+			AudioObjectType_BackCenter |
 			AudioObjectType_TopFrontLeft |
 			AudioObjectType_TopFrontRight |
 			AudioObjectType_TopBackLeft |
-			AudioObjectType_TopBackRight;
+			AudioObjectType_TopBackRight |
+			AudioObjectType_BottomFrontLeft |
+			AudioObjectType_BottomFrontRight |
+			AudioObjectType_BottomBackRight |
+			AudioObjectType_BottomBackLeft;
 
 		//Get maximum available dynamic objects
 		hr = m_SpatialAudioClient->GetMaxDynamicObjectCount(&m_MaxDynamicObjects);
