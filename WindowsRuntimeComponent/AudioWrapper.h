@@ -33,7 +33,6 @@ namespace WindowsRuntimeComponent
 		AudioOperation ops;
 		TimeSpan period;
 		ThreadPoolTimer ^ PeriodicTimer;
-		int times;
 		bool m_bCWise;
 		Orientation ort;
     };
