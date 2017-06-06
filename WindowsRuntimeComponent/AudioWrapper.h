@@ -26,7 +26,7 @@ namespace WindowsRuntimeComponent
 		void Initialize();
 		bool Stop();
 		void SetDistance(double dist, bool isCWise);
-		void SetbuttonPressed(bool isCWise) { m_bCWise = isCWise; };
+		void SetMode(bool isCWise) { m_bCWise = isCWise; };
 
 	private:
 		void UpdatePosition();

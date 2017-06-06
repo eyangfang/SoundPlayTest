@@ -13,10 +13,10 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="btnclock" Command="{Binding clcockwiseCommand}" Content="Clockwise" HorizontalAlignment="Left" Margin="294,425,0,0" VerticalAlignment="Top" Height="78" Width="170" Click="btnclock_Click"/>
-        <Button x:Name="btnele" Content="Elevation" HorizontalAlignment="Left" Margin="906,425,0,0" VerticalAlignment="Top" Height="78" Width="170" RenderTransformOrigin="0.106,1.451" Click="btnele_Click"/>
-        <Slider x:Name="cslider" Value="100" Minimum="100" Maximum ="200" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="294,607,0,0" VerticalAlignment="Top" Width="170" Height="40" ValueChanged="cslider_ValueChanged"/>
-        <Slider x:Name="eslider" Value="100" Minimum="100" Maximum ="200" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="906,607,0,0" VerticalAlignment="Top" Width="170" Height="40" ValueChanged="eslider_ValueChanged"/>
+        <Button x:Name="btnclock" Command="{Binding BtnCCmd, Source={StaticResource vmObj}}" Content="{Binding BtnCText, Source={StaticResource vmObj}}" HorizontalAlignment="Left" Margin="294,425,0,0" VerticalAlignment="Top" Height="78" Width="170" />
+        <Button x:Name="btnele" Content="{Binding BtnEText, Source={StaticResource vmObj}}" HorizontalAlignment="Left" Margin="906,425,0,0" VerticalAlignment="Top" Height="78" Width="170" RenderTransformOrigin="0.106,1.451" Command="{Binding BtnECmd, Source={StaticResource vmObj}}"/>
+        <Slider x:Name="cslider" Value="{Binding SliderValueC, Source={StaticResource vmObj}}" Minimum="100" Maximum ="200" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="294,607,0,0" VerticalAlignment="Top" Width="170" Height="40"  IsEnabled="{Binding BtnCEnable, Source={StaticResource vmObj}}"/>
+        <Slider x:Name="eslider" Value="{Binding SliderValueE, Source={StaticResource vmObj}}" Minimum="100" Maximum ="200" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="906,607,0,0" VerticalAlignment="Top" Width="170" Height="40"  IsEnabled="{Binding BtnEEnable, Source={StaticResource vmObj}}"/>
 
     </Grid>
 </Page>
