@@ -19,17 +19,20 @@ namespace WindowsRuntimeComponent
 		BOTTOM
 	};
 
-    public ref class AudioWrapper sealed
+	public ref class AudioWrapper sealed
     {
     public:
         AudioWrapper();
 		void Initialize();
 		bool Stop();
-		void SetDistance(double dist, bool isCWise);
+		void SetDistance(float dist, bool isCWise);
 		void SetMode(bool isCWise) { m_bCWise = isCWise; };
-
-	private:
 		void UpdatePosition();
+		bool GetClockWise() { return m_bCWise; }
+		void SetClockWise(bool inClockWise) { m_bCWise = inClockWise; }
+		int GetCurrentOrientation() { return ort; }
+		void SetCurrentOrientation(int orientation) { ort = (Orientation)orientation; }
+	private:
 		AudioOperation ops;
 		TimeSpan period;
 		ThreadPoolTimer ^ PeriodicTimer;

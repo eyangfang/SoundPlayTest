@@ -133,10 +133,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.2.3</Version>
+      <Version>5.3.3</Version>
     </PackageReference>
     <PackageReference Include="Moq">
       <Version>4.7.25</Version>
+    </PackageReference>
+    <PackageReference Include="xUnit">
+      <Version>2.2.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

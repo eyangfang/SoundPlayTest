@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using WindowsRuntimeComponent;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace SoundPlayTest
 {
@@ -67,6 +68,7 @@ namespace SoundPlayTest
         }
         public void btnclock_Click()
         {
+            Debug.Assert(aw != null);
             if (!TaskCInProgress)
             {
                 aw.Initialize();
@@ -88,6 +90,7 @@ namespace SoundPlayTest
 
         public void btnele_Click()
         {
+            Debug.Assert(aw != null);
             if (!TaskEInProgress)
             {
                 aw.Initialize();
@@ -109,12 +112,14 @@ namespace SoundPlayTest
 
         private void cslider_ValueChanged()
         {
+            Debug.Assert(aw != null);
             aw.SetDistance(sliderValueC, true);
         }
 
         private void eslider_ValueChanged()
         {
-             aw.SetDistance(sliderValueE, false);
+            Debug.Assert(aw != null);
+            aw.SetDistance(sliderValueE, false);
         }
     
     }

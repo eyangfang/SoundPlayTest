@@ -6,8 +6,6 @@ using namespace DirectX;
 using namespace WindowsRuntimeComponent;
 using namespace Platform;
 
-
-
 AudioWrapper::AudioWrapper()
 {
 }
@@ -94,32 +92,28 @@ bool AudioWrapper::Stop()
 	return true;
 }
 
-void AudioWrapper::SetDistance(double dist, bool isCWise)
+void AudioWrapper::SetDistance(float dist, bool isCWise)
 {
 	if (isCWise)
 	{
 		switch (ort)
 		{
-		case LEFT:
-			ort = FRONT;
+		case FRONT:
 			ops.m_emitter.posX = 0;
 			ops.m_emitter.posY = -dist;
 			ops.m_emitter.posZ = 0;
 			break;
-		case RIGHT:
-			ort = BACK;
+		case BACK:
 			ops.m_emitter.posX = 0;
 			ops.m_emitter.posY = dist;
 			ops.m_emitter.posZ = 0;
 			break;
-		case FRONT:
-			ort = RIGHT;
+		case RIGHT:
 			ops.m_emitter.posX = dist;
 			ops.m_emitter.posY = 0;
 			ops.m_emitter.posZ = 0;
 			break;
-		case BACK:
-			ort = LEFT;
+		case LEFT:
 			ops.m_emitter.posX = -dist;
 			ops.m_emitter.posY = 0;
 			ops.m_emitter.posZ = 0;
@@ -130,26 +124,22 @@ void AudioWrapper::SetDistance(double dist, bool isCWise)
 	{
 		switch (ort)
 		{
-		case BOTTOM:
-			ort = FRONT;
+		case FRONT:
 			ops.m_emitter.posX = 0;
 			ops.m_emitter.posY = -dist;
 			ops.m_emitter.posZ = 0;
 			break;
-		case TOP:
-			ort = BACK;
+		case BACK:
 			ops.m_emitter.posX = 0;
 			ops.m_emitter.posY = dist;
 			ops.m_emitter.posZ = 0;
 			break;
-		case FRONT:
-			ort = TOP;
+		case TOP:
 			ops.m_emitter.posX = 0;
 			ops.m_emitter.posY = 0;
 			ops.m_emitter.posZ = dist;
 			break;
-		case BACK:
-			ort = BOTTOM;
+		case BOTTOM:
 			ops.m_emitter.posX = 0;
 			ops.m_emitter.posY = 0;
 			ops.m_emitter.posZ = -dist;
