@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace SoundPlayTest
 {
-    class MainViewModel : INotifyPropertyChanged
+    public partial class MainViewModel : INotifyPropertyChanged
     {
         private AudioWrapper aw = new AudioWrapper();
 

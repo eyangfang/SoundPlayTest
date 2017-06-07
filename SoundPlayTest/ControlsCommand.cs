@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace SoundPlayTest
 {
-    class ControlsCommand : ICommand
+    public partial class ControlsCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
         private Action _action;
