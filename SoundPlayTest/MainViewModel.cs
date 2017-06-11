@@ -7,6 +7,7 @@ using System.ComponentModel;
 using WindowsRuntimeComponent;
 using System.Windows.Input;
 using System.Diagnostics;
+using Windows.ApplicationModel.Resources.Core;
 
 namespace SoundPlayTest
 {
@@ -22,6 +23,7 @@ namespace SoundPlayTest
 
         public ControlsCommand BtnCCmd { get; set; }
         public ControlsCommand BtnECmd { get; set; }
+        public ControlsCommand cmbSelect { get; set; }
         private int sliderValueC;
         private int sliderValueE;
         public bool BtnCEnable { get; set; }
@@ -63,6 +65,7 @@ namespace SoundPlayTest
             BtnEText = "Elevation";
             BtnCCmd = new ControlsCommand(btnclock_Click, BtnCEnable);
             BtnECmd = new ControlsCommand(btnele_Click, BtnEEnable);
+
             TaskCInProgress = false;
             TaskEInProgress = false;
         }
@@ -121,6 +124,6 @@ namespace SoundPlayTest
             Debug.Assert(aw != null);
             aw.SetDistance(sliderValueE, false);
         }
-    
+
     }
 }

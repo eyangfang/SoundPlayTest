@@ -107,6 +107,8 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="SoundPlayTest_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\zh-CN\Resources.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ATG_SpatialMotion_monoFunkDrums1Loop.wav">
@@ -148,6 +150,7 @@
       <Name>WindowsRuntimeComponent</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
