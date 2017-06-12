@@ -13,8 +13,8 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="btnclock" x:Uid="btnclock_Text" Command="{Binding BtnCCmd, Source={StaticResource vmObj}}" Content="" HorizontalAlignment="Left" Margin="294,425,0,0" VerticalAlignment="Top" Height="78" Width="170" />
-        <Button x:Name="btnele" x:Uid="btnele_Text" Content="" HorizontalAlignment="Left" Margin="906,425,0,0" VerticalAlignment="Top" Height="78" Width="170" RenderTransformOrigin="0.106,1.451" Command="{Binding BtnECmd, Source={StaticResource vmObj}}"/>
+        <Button x:Name="btnclock" x:Uid="btnclock_Text" Command="{Binding BtnCCmd, Source={StaticResource vmObj}}" Content="{Binding BtnCText, Source={StaticResource vmObj}}" HorizontalAlignment="Left" Margin="294,425,0,0" VerticalAlignment="Top" Height="78" Width="170" />
+        <Button x:Name="btnele" x:Uid="btnele_Text" Content="{Binding BtnEText, Source={StaticResource vmObj}}" HorizontalAlignment="Left" Margin="906,425,0,0" VerticalAlignment="Top" Height="78" Width="170" RenderTransformOrigin="0.106,1.451" Command="{Binding BtnECmd, Source={StaticResource vmObj}}"/>
         <Slider x:Name="cslider" Value="{Binding SliderValueC, Source={StaticResource vmObj}}" Minimum="100" Maximum ="200" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="294,607,0,0" VerticalAlignment="Top" Width="170" Height="40"  IsEnabled="{Binding BtnCEnable, Source={StaticResource vmObj}}"/>
         <Slider x:Name="eslider" Value="{Binding SliderValueE, Source={StaticResource vmObj}}" Minimum="100" Maximum ="200" TickPlacement="BottomRight" TickFrequency="5" HorizontalAlignment="Left" Margin="906,607,0,0" VerticalAlignment="Top" Width="170" Height="40"  IsEnabled="{Binding BtnEEnable, Source={StaticResource vmObj}}"/>
         <ComboBox x:Name="cmbLanguageSelect" x:Uid="cmbLanguageSelect" HorizontalAlignment="Left" Margin="294,166,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged">

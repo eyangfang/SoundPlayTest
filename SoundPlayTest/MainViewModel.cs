@@ -8,6 +8,8 @@ using WindowsRuntimeComponent;
 using System.Windows.Input;
 using System.Diagnostics;
 using Windows.ApplicationModel.Resources.Core;
+using System.Globalization;
+using System.Threading;
 
 namespace SoundPlayTest
 {
@@ -72,17 +74,25 @@ namespace SoundPlayTest
         public void btnclock_Click()
         {
             Debug.Assert(aw != null);
+            CultureInfo cultureInfo = CultureInfo.CurrentCulture;
+            string s = cultureInfo.Name.ToString();
             if (!TaskCInProgress)
             {
                 aw.Initialize();
-                BtnCText = "Stop";
+                if (s == "zh-CN")
+                    BtnCText = "停止";
+                else
+                    BtnCText = "Stop";
                 RaisePropertyChanged("BtnCText");
                 aw.SetMode(true);
             }
             else
             {
                 aw.Stop();
-                BtnCText = "Clockwise";
+                if (s == "zh-CN")
+                    BtnCText = "顺时针播放";
+                else
+                    BtnCText = "Clockwise";
                 RaisePropertyChanged("BtnCText");
             }
             BtnEEnable = !BtnEEnable;
@@ -94,17 +104,25 @@ namespace SoundPlayTest
         public void btnele_Click()
         {
             Debug.Assert(aw != null);
+            CultureInfo cultureInfo = CultureInfo.CurrentCulture;
+            string s = cultureInfo.Name.ToString();
             if (!TaskEInProgress)
             {
                 aw.Initialize();
-                BtnEText = "Stop";
+                if (s == "zh-CN")
+                    BtnCText = "停止";
+                else
+                    BtnEText = "Stop";
                 RaisePropertyChanged("BtnEText");
                 aw.SetMode(false);
             }
             else
             {
                 aw.Stop();
-                BtnEText = "Elevation";
+                if (s == "zh-CN")
+                    BtnCText = "空间播放";
+                else
+                    BtnEText = "Elevation";
                 RaisePropertyChanged("BtnEText");
             }
             BtnCEnable = !BtnCEnable;
